@@ -1,4 +1,4 @@
-# Code of Deep Reinforcement Learning (DRL) lectured at Samsung
+# Code of Deep Reinforcement Learning (DRL) with PyTorch
 
 ## Outline
 
