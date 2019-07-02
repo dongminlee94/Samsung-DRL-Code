@@ -4,33 +4,33 @@
 
 ### DAY 1
 
-- Prerequisite
+- **Prerequisite**
   - Install from Anaconda to OpenAI Gym
   - Numpy
 
-- Deep Learning with PyTorch
+- **Deep Learning with PyTorch**
 
-- Deep Q-Network (DQN) & Double DQN (DDQN)
+- **Deep Q-Network (DQN) & Double DQN (DDQN)**
 
 ### DAY 2
 
-- Advantage Actor-Critic (A2C)
+- **Advantage Actor-Critic (A2C)**
 
-- Deep Deterministic Policy Gradient (DDPG)
+- **Deep Deterministic Policy Gradient (DDPG)**
 
 ### DAY 3
 
-- Soft Actor-Critic (SAC)
+- **Soft Actor-Critic (SAC)**
 
 ### DAY 4
 
-- Trust Region Policy Optimization (TRPO)
+- **Trust Region Policy Optimization (TRPO)**
 
 ### DAY 5
 
-- TRPO + Generalized Advantage Estimator (GAE)
+- **TRPO + Generalized Advantage Estimator (GAE)**
 
-- GAE + Proximal Policy Optimization (PPO)
+- **GAE + Proximal Policy Optimization (PPO)**
 
 ## Learning curve
 
