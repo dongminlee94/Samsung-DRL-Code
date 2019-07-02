@@ -31,9 +31,6 @@ parser.add_argument('--logdir', type=str, default='./logs',
                     help='tensorboardx logs directory')
 args = parser.parse_args()
 
-def eval_action(mu, std, epsilon=1e-6):
-    pass
-
 def train_model(actor, critic, target_critic, mini_batch, 
                 actor_optimizer, critic_optimizer, alpha_optimizer,
                 target_entropy, log_alpha, alpha):

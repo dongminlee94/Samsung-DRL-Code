@@ -363,9 +363,9 @@ tensor([[0., 0., 0., 0.],
 ##################################################################
 ##################################################################
 
-#########################
-##### 3. Make Model #####
-#########################
+######################################
+##### 3. Make Model with PyTorch #####
+######################################
 
 ## 3.1 make Deep Neural Network
 ### It's not code that actually works.
@@ -390,14 +390,14 @@ class Net(nn.Module):
 net = Net()
 
 # Define loss and optimizer
-criterion = torch.nn.MSELoss()
-optimizer = optim.Adam(net.parameters(), lr=0.001)
+# criterion = torch.nn.MSELoss()
+# optimizer = optim.Adam(net.parameters(), lr=0.001)
 
 
-net.train()
+# net.train()
 
-# output = net(data)
-# loss = criterion(output, label)
+# hypothesis = net(inputs)
+# loss = criterion(hypothesis, labels)
 
 # optimizer.zero_grad() # initialize gradient
 # loss.backward()       # compute gradient
@@ -412,3 +412,105 @@ net.train()
 
 ### load
 # net.load_state_dict(torch.load('./save_model/Net.pth'))
+
+##################################################################
+
+## 3.3 MNIST example 
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+import torchvision.datasets as dsets
+import torchvision.transforms as transforms
+import random
+
+class MLP(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(MLP, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size)
+        self.fc2 = nn.Linear(hidden_size, hidden_size)
+        self.fc3 = nn.Linear(hidden_size, output_size)
+        
+    def forward(self, x):
+        x = torch.relu(self.fc1(x))
+        x = torch.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+
+# parameters
+training_epochs = 15
+batch_size = 100
+
+# Network Parameters
+input_size = 784
+hidden_size = 512
+output_size = 10
+
+# MNIST dataset
+mnist_train = dsets.MNIST(root='MNIST_data/',
+                          train=True,
+                          transform=transforms.ToTensor(),
+                          download=True)
+
+mnist_test = dsets.MNIST(root='MNIST_data/',
+                         train=False,
+                         transform=transforms.ToTensor(),
+                         download=True)
+
+# dataset loader
+data_loader = torch.utils.data.DataLoader(dataset=mnist_train,
+                                          batch_size=batch_size,
+                                          shuffle=True,
+                                          drop_last=True)
+
+# model
+model = MLP(input_size, hidden_size, output_size)
+
+# Define loss and optimizer
+criterion = torch.nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+# Train model
+total_batch = len(data_loader)
+
+for epoch in range(training_epochs):
+    avg_cost = 0
+
+    for inputs, labels in data_loader:
+        # reshape input image into [batch_size by 784]
+        inputs = inputs.view(-1, 28 * 28)
+
+        hypothesis = model(inputs)
+
+        loss = criterion(hypothesis, labels)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        avg_cost += loss / total_batch
+
+    print('Epoch: {} | loss: {:.9f}'.format(epoch + 1, avg_cost))
+
+print('Learning finished')
+
+# Test the model using test sets
+with torch.no_grad():
+    inputs_test = mnist_test.test_data.view(-1, 28 * 28).float()
+    labels_test = mnist_test.test_labels
+
+    prediction = model(inputs_test)
+
+    correct_prediction = torch.argmax(prediction, 1) == labels_test
+    accuracy = correct_prediction.float().mean()
+    print('Accuracy:', accuracy.item())
+
+    # Get one and predict
+    r = random.randint(0, len(mnist_test) - 1)
+
+    inputs_single_data = mnist_test.test_data[r : r + 1].view(-1, 28 * 28).float()
+    labels_single_data = mnist_test.test_labels[r : r + 1]
+    print('Label: ', labels_single_data.item())
+
+    single_prediction = model(inputs_single_data)
+    print('Prediction: ', torch.argmax(single_prediction, 1).item())

@@ -26,13 +26,13 @@ def get_log_prob(actions, mu, std):
 
     return log_prob
 
-def surrogate_loss(actor, returns, states, old_policy, actions):
+def surrogate_loss(actor, values, target, states, old_policy, actions):
     mu, std = actor(torch.Tensor(states))
     new_policy = get_log_prob(actions, mu, std)
 
-    returns = returns.unsqueeze(1)
+    advantages = target - values
 
-    surrogate_loss = torch.exp(new_policy - old_policy) * returns
+    surrogate_loss = torch.exp(new_policy - old_policy) * advantages
     surrogate_loss = surrogate_loss.mean()
 
     return surrogate_loss

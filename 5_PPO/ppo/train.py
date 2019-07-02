@@ -44,8 +44,7 @@ def train_model(actor, critic, actor_optimizer, critic_optimizer,
     rewards = torch.Tensor(rewards).squeeze(1)
     masks = torch.Tensor(masks)
 
-    old_values = critic(torch.Tensor(states))
-    returns, advantages = get_gae(rewards, masks, old_values, args)
+    returns = get_returns(rewards, masks, args.gamma)
 
     mu, std = actor(torch.Tensor(states))
     old_policy = get_log_prob(actions, mu, std)
@@ -64,26 +63,17 @@ def train_model(actor, critic, actor_optimizer, critic_optimizer,
             
             states_samples = torch.Tensor(states)[mini_batch_index]
             actions_samples = torch.Tensor(actions)[mini_batch_index]
-            returns_samples = returns.unsqueeze(1)[mini_batch_index]
-            advantages_samples = advantages.unsqueeze(1)[mini_batch_index]
-            old_values_samples = old_values[mini_batch_index].detach()
             
             # get critic loss
             values_samples = critic(states_samples)
-            clipped_values_samples = old_values_samples + \
-                                    torch.clamp(values_samples - old_values_samples,
-                                                -args.clip_param, 
-                                                args.clip_param)
+            target_samples = returns.unsqueeze(1)[mini_batch_index]
             
-            critic_loss = criterion(values_samples, returns_samples)
-            clipped_critic_loss = criterion(clipped_values_samples, returns_samples)
-            
-            critic_loss = torch.max(critic_loss, clipped_critic_loss)
+            critic_loss = criterion(values_samples, target_samples)
 
             # get actor loss
-            actor_loss, ratio = surrogate_loss(actor, advantages_samples, states_samples,
-                                                old_policy.detach(), actions_samples,
-                                                mini_batch_index)
+            actor_loss, ratio, advantages_samples = surrogate_loss(actor, values_samples, target_samples, 
+                                                                    states_samples, old_policy.detach(), 
+                                                                    actions_samples, mini_batch_index)
 
             clipped_ratio = torch.clamp(ratio,
                                         1.0 - args.clip_param,
