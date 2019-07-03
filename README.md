@@ -2,22 +2,22 @@
 
 ## Outline
 
-### 0. Prerequisite
+### 00. Prerequisite
 
 - Install from Anaconda to OpenAI Gym
 - Numpy
 
-### 1. Deep Learning with PyTorch
+### 01. Deep Learning with PyTorch
 
-### 2. Deep Q-Network (DQN) & Double DQN (DDQN)
+### 02. Deep Q-Network (DQN) & Double DQN (DDQN)
 
-### 3. Deep Deterministic Policy Gradient (DDPG)
+### 03. Deep Deterministic Policy Gradient (DDPG)
 
-### 4. Trust Region Policy Optimization (TRPO)
+### 04. Trust Region Policy Optimization (TRPO)
 
-### 5. Proximal Policy Optimization (PPO)
+### 05. Proximal Policy Optimization (PPO)
 
-### 6. Soft Actor-Critic (SAC)
+### 06. Soft Actor-Critic (SAC)
 
 ## Learning curve
 
