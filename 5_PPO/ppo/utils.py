@@ -16,8 +16,6 @@ def get_returns(rewards, masks, gamma):
         running_returns = rewards[t] + masks[t] * gamma * running_returns 
         returns[t] = running_returns
 
-    returns = (returns - returns.mean()) / returns.std()
-
     return returns
 
 def get_log_prob(actions, mu, std):
