@@ -66,12 +66,12 @@ def train_model(actor, critic, actor_optimizer, critic_optimizer,
             
             # get critic loss
             values_samples = critic(states_samples)
-            target_samples = returns.unsqueeze(1)[mini_batch_index]
+            targets_samples = returns.unsqueeze(1)[mini_batch_index]
             
-            critic_loss = criterion(values_samples, target_samples)
+            critic_loss = criterion(values_samples, targets_samples)
 
             # get actor loss
-            actor_loss, ratio, advantages_samples = surrogate_loss(actor, values_samples, target_samples, 
+            actor_loss, ratio, advantages_samples = surrogate_loss(actor, values_samples, targets_samples, 
                                                                     states_samples, old_policy.detach(), 
                                                                     actions_samples, mini_batch_index)
 

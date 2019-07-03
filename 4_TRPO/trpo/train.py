@@ -49,9 +49,9 @@ def train_model(actor, critic, critic_optimizer,
     criterion = torch.nn.MSELoss()
 
     values = critic(torch.Tensor(states))
-    target = returns.unsqueeze(1)
+    targets = returns.unsqueeze(1)
 
-    critic_loss = criterion(values, target)
+    critic_loss = criterion(values, targets)
     critic_optimizer.zero_grad()
     critic_loss.backward()
     critic_optimizer.step()
@@ -60,7 +60,7 @@ def train_model(actor, critic, critic_optimizer,
     # step 3: get gradient of actor loss and search direction through conjugate gradient method
     mu, std = actor(torch.Tensor(states))
     old_policy = get_log_prob(actions, mu, std)
-    actor_loss = surrogate_loss(actor, values, target, states, old_policy.detach(), actions)
+    actor_loss = surrogate_loss(actor, values, targets, states, old_policy.detach(), actions)
     
     actor_loss_grad = torch.autograd.grad(actor_loss, actor.parameters())
     actor_loss_grad = flat_grad(actor_loss_grad)
@@ -94,7 +94,7 @@ def train_model(actor, critic, critic_optimizer,
         new_params = params + backtrac_coef * maximal_step
         update_model(actor, new_params)
         
-        new_actor_loss = surrogate_loss(actor, values, target, states, old_policy.detach(), actions)
+        new_actor_loss = surrogate_loss(actor, values, targets, states, old_policy.detach(), actions)
         new_actor_loss = new_actor_loss.data.numpy()
 
         loss_improve = new_actor_loss - actor_loss
