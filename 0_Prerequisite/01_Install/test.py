@@ -44,25 +44,3 @@ from tensorboardX import SummaryWriter
 
 #         if done:
 #             break
-
-import gym
-
-env = gym.make('CartPole-v1')
-
-for episode in range(10000):
-    done = False
-    state = env.reset()
-
-    while not done:
-        env.render()
-
-        action = env.action_space.sample()
-        next_state, reward, done, _ = env.step(action)
-
-        print('state: {} | action: {} | next_state: {} | reward: {} | done: {}'.format(
-                state, action, next_state, reward, done))
-        
-        state = next_state
-
-        if done:
-            break

@@ -54,6 +54,7 @@ tensor([[10,  3,  5,  7],
 ##################################################################
 
 ## 1.2 Torch tensor -> Numpy array
+
 tensor = torch.Tensor([[1,2,3,4], [5,6,7,8]])
 array = tensor.numpy()
 # print(tensor)
@@ -230,10 +231,6 @@ tensor([[1., 2., 3., 4., 1., 3., 5., 7.],
 
 ### View
 tensor_a = torch.Tensor([[1,3,5,7], [2,4,6,8]])
-# print(tensor_a.shape)
-'''
-torch.Size([2, 4])
-'''
 
 tensor_b = tensor_a.view(8)
 # print(tensor_b.shape)
