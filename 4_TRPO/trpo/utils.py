@@ -121,3 +121,40 @@ def update_model(model, new_params):
         new_param = new_param.view(params.size())
         params.data.copy_(new_param)
         index += params_length
+
+
+def backtracking_line_search(old_actor, actor, actor_loss, actor_loss_grad, 
+                             old_policy, params, maximal_step, max_kl,
+                             values, targets, states, actions):
+    backtrac_coef = 1.0
+    alpha = 0.5
+    beta = 0.5
+    flag = False
+
+    expected_improve = (actor_loss_grad * maximal_step).sum(0, keepdim=True)
+    expected_improve = expected_improve.data.numpy()
+
+    for i in range(10):
+        new_params = params + backtrac_coef * maximal_step
+        update_model(actor, new_params)
+        
+        new_actor_loss = surrogate_loss(actor, values, targets, states, old_policy.detach(), actions)
+        new_actor_loss = new_actor_loss.data.numpy()
+
+        loss_improve = new_actor_loss - actor_loss
+        expected_improve *= backtrac_coef
+        improve_condition = loss_improve / expected_improve
+
+        kl = kl_divergence(new_actor=actor, old_actor=old_actor, states=states)
+        kl = kl.mean()
+
+        if kl < max_kl and improve_condition > alpha:
+            flag = True
+            break
+
+        backtrac_coef *= beta
+
+    if not flag:
+        params = flat_params(old_actor)
+        update_model(actor, params)
+        print('policy update does not impove the surrogate')

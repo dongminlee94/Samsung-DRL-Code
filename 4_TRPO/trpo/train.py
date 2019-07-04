@@ -57,7 +57,7 @@ def train_model(actor, critic, critic_optimizer,
     critic_optimizer.step()
 
     # ----------------------------
-    # step 3: get gradient of actor loss
+    # step 3: get gradient of actor loss and search direction through conjugate gradient method
     mu, std = actor(torch.Tensor(states))
     old_policy = get_log_prob(actions, mu, std)
     actor_loss = surrogate_loss(actor, values, targets, states, old_policy.detach(), actions)
@@ -65,57 +65,26 @@ def train_model(actor, critic, critic_optimizer,
     actor_loss_grad = torch.autograd.grad(actor_loss, actor.parameters())
     actor_loss_grad = flat_grad(actor_loss_grad)
     
+    search_dir = conjugate_gradient(actor, states, actor_loss_grad.data, nsteps=10)
+    
     actor_loss = actor_loss.data.numpy()
     
     # ----------------------------
-    # step 4: get search direction through conjugate gradient method
-    search_dir = conjugate_gradient(actor, states, actor_loss_grad.data, nsteps=10)
-    
-    # ----------------------------
-    # step 5: get step size and maximal step
+    # step 4: get step size and maximal step
     gHg = (hessian_vector_product(actor, states, search_dir) * search_dir).sum(0, keepdim=True)
     step_size = torch.sqrt(2 * args.max_kl / gHg)[0]
     maximal_step = step_size * search_dir
 
     # ----------------------------    
-    # step 6: update actor and perform backtracking line search for n iteration
+    # step 5: update actor and perform backtracking line search
     params = flat_params(actor)
     
     old_actor = Actor(state_size, action_size, args)
     update_model(old_actor, params)
     
-    expected_improve = (actor_loss_grad * maximal_step).sum(0, keepdim=True)
-    expected_improve = expected_improve.data.numpy()
-
-    backtrac_coef = 1.0
-    alpha = 0.5
-    beta = 0.5
-    flag = False
-
-    for i in range(10):
-        new_params = params + backtrac_coef * maximal_step
-        update_model(actor, new_params)
-        
-        new_actor_loss = surrogate_loss(actor, values, targets, states, old_policy.detach(), actions)
-        new_actor_loss = new_actor_loss.data.numpy()
-
-        loss_improve = new_actor_loss - actor_loss
-        expected_improve *= backtrac_coef
-        improve_condition = loss_improve / expected_improve
-
-        kl = kl_divergence(new_actor=actor, old_actor=old_actor, states=states)
-        kl = kl.mean()
-
-        if kl < args.max_kl and improve_condition > alpha:
-            flag = True
-            break
-
-        backtrac_coef *= beta
-
-    if not flag:
-        params = flat_params(old_actor)
-        update_model(actor, params)
-        print('policy update does not impove the surrogate')
+    backtracking_line_search(old_actor, actor, actor_loss, actor_loss_grad, 
+                             old_policy, params, maximal_step, args.max_kl,
+                             values, targets, states, actions)
 
 
 def main():

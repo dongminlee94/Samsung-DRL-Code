@@ -173,14 +173,6 @@ tensor([2., 4., 6., 8.])
 tensor([1, 1, 1, 1])
 '''
 
-### Dot product
-tensor = torch.Tensor([1,2,3,4,5])
-dot = torch.dot(tensor, tensor)
-# print(dot)
-'''
-tensor(55.)
-'''
-
 ### Mathematical functions
 tensor = torch.Tensor([[1,2,3,4], [5,6,7,8]])
 
@@ -292,7 +284,7 @@ torch.Size([2, 1, 1, 1, 5])
 ######################################
 
 ## 2.1 Make Deep Neural Network
-### It's not code that actually works.
+### It's code that actually don't works.
 
 import torch
 import torch.nn as nn
@@ -332,10 +324,10 @@ net = Net()
 ## 2.2 Save & Load
 
 ### save
-# torch.save(net.state_dict(), './save_model/Net.pth')
+# torch.save(net.state_dict(), './save_model/model.pth')
 
 ### load
-# net.load_state_dict(torch.load('./save_model/Net.pth'))
+# net.load_state_dict(torch.load('./save_model/model.pth'))
 
 ##################################################################
 

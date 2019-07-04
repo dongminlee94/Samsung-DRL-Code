@@ -206,7 +206,7 @@ randn_sampling = np.random.randn(2,5)
 ## 4.1 Sum
 matrix = np.array([[1,3,5,7], [2,4,8,10]])
 matrix_sum = matrix.sum()
-print(matrix_sum)
+# print(matrix_sum)
 '''
 40
 '''
@@ -438,43 +438,43 @@ transpose2 = matrix.T
 matrix = np.array([[1,2,3], [4,5,6]])
 scalar = 3
 
-print(matrix + scalar)        # add
+# print(matrix + scalar)        # add
 '''
 [[4 5 6]
  [7 8 9]]
 '''
 
-print(matrix - scalar)        # subtract
+# print(matrix - scalar)        # subtract
 '''
 [[-2 -1  0]
  [ 1  2  3]]
 '''
 
-print(matrix * scalar)        # multiply 
+# print(matrix * scalar)        # multiply 
 '''
 [[ 3  6  9]
  [12 15 18]]
 '''
 
-print(matrix / scalar)        # divide 
+# print(matrix / scalar)        # divide 
 '''
 [[0.33333333 0.66666667 1.        ]
  [1.33333333 1.66666667 2.        ]]
 '''
 
-print(matrix // scalar)       # quotient
+# print(matrix // scalar)       # quotient
 '''
 [[0 0 1]
  [1 1 2]]
 '''
 
-print(matrix % scalar)        # remainder
+# print(matrix % scalar)        # remainder
 '''
 [[1 2 0]
  [1 2 0]]
 '''
 
-print(matrix ** scalar)       # power
+# print(matrix ** scalar)       # power
 '''
 [[  1   8  27]
  [ 64 125 216]]
