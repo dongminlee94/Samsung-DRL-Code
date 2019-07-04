@@ -112,30 +112,6 @@ tensor([[ 0.4119, -1.1501, -0.4142,  0.9698, -0.9407],
         [ 0.5520,  2.3532,  0.5251, -1.1743,  0.5667]])
 '''
 
-### Normal(Gaussian) distribution
-mu = torch.Tensor([1,  0, -1])
-std = torch.Tensor([1., 1., 1.])
-
-from torch.distributions import Normal
-normal = Normal(mu, std)
-
-x = normal.sample()
-# print(x)
-'''
-tensor([-0.2713,  0.3903, -0.1373])
-'''
-
-### Categorical distribution
-probs = torch.Tensor([0.3, 0.2, 0.1, 0.4])
-
-from torch.distributions import Categorical
-categorical = Categorical(probs)
-x = categorical.sample()
-# print(x)
-'''
-tensor(3)
-'''
-
 ##################################################################
 
 ## 1.4 Operation Functions 
@@ -308,66 +284,14 @@ torch.Size([2, 1, 1, 1, 5])
 torch.Size([2, 1, 1, 1, 5])
 '''
 
-### Gather
-tensor = torch.Tensor([[1,3], [3,2], [5,4], [1,4], [4,2]])
-index = torch.LongTensor([[0], [1], [0], [0], [1]])
-
-tensor = tensor.gather(1, index)
-# print(tensor)
-'''
-tensor([[1.],
-        [2.],
-        [5.],
-        [1.],
-        [2.]])
-'''
-
-##################################################################
-##################################################################
-
-###################################
-##### 2. Activation Functions #####
-###################################
-
-## 2.1 Sigmoid
-tensor = torch.Tensor([[-4,-3,-2,-1], [1,2,3,4]])
-sigmoid = torch.sigmoid(tensor)
-# print(sigmoid)
-'''
-tensor([[0.0180, 0.0474, 0.1192, 0.2689],
-        [0.7311, 0.8808, 0.9526, 0.9820]])
-'''
-
-##################################################################
-
-## 2.2 Tanh
-tensor = torch.Tensor([[-4,-3,-2,-1], [1,2,3,4]])
-tanh = torch.tanh(tensor)
-# print(tanh)
-'''
-tensor([[-0.9993, -0.9951, -0.9640, -0.7616],
-        [ 0.7616,  0.9640,  0.9951,  0.9993]])
-'''
-
-##################################################################
-
-## 2.3 Relu
-tensor = torch.Tensor([[-4,-3,-2,-1], [1,2,3,4]])
-relu = torch.relu(tensor)
-# print(relu)
-'''
-tensor([[0., 0., 0., 0.],
-        [1., 2., 3., 4.]])
-'''
-
 ##################################################################
 ##################################################################
 
 ######################################
-##### 3. Make Model with PyTorch #####
+##### 2. Make Model with PyTorch #####
 ######################################
 
-## 3.1 make Deep Neural Network
+## 2.1 Make Deep Neural Network
 ### It's not code that actually works.
 
 import torch
@@ -405,7 +329,7 @@ net = Net()
 
 ##################################################################
 
-## 3.2 Save & Load
+## 2.2 Save & Load
 
 ### save
 # torch.save(net.state_dict(), './save_model/Net.pth')
@@ -415,7 +339,7 @@ net = Net()
 
 ##################################################################
 
-## 3.3 MNIST example 
+## 2.3 MNIST example 
 
 import torch
 import torch.nn as nn
