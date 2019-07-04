@@ -173,6 +173,14 @@ tensor([2., 4., 6., 8.])
 tensor([1, 1, 1, 1])
 '''
 
+### Dot product
+tensor = torch.Tensor([1,2,3,4,5])
+dot = torch.dot(tensor, tensor)
+# print(dot)
+'''
+tensor(55.)
+'''
+
 ### Mathematical functions
 tensor = torch.Tensor([[1,2,3,4], [5,6,7,8]])
 
