@@ -60,12 +60,12 @@ def train_model(actor, critic, target_critic, mini_batch,
     min_target_next_q_value = min_target_next_q_value.squeeze(1) - alpha * next_log_policy.squeeze(1)
     target = rewards + masks * args.gamma * min_target_next_q_value
 
-    critic_loss1 = criterion(q_value1.squeeze(1), target.detach()) # Equation 5 
+    critic_loss1 = criterion(q_value1.squeeze(1), target.detach()) 
     critic_optimizer.zero_grad()
     critic_loss1.backward()
     critic_optimizer.step()
 
-    critic_loss2 = criterion(q_value2.squeeze(1), target.detach()) # Equation 5 
+    critic_loss2 = criterion(q_value2.squeeze(1), target.detach()) 
     critic_optimizer.zero_grad()
     critic_loss2.backward()
     critic_optimizer.step()
@@ -77,13 +77,13 @@ def train_model(actor, critic, target_critic, mini_batch,
     q_value1, q_value2 = critic(torch.Tensor(states), policy)
     min_q_value = torch.min(q_value1, q_value2)
     
-    actor_loss = ((alpha * log_policy) - min_q_value).mean() # Equation 9 
+    actor_loss = ((alpha * log_policy) - min_q_value).mean() 
     actor_optimizer.zero_grad()
     actor_loss.backward()
     actor_optimizer.step()
     
     # update alpha
-    alpha_loss = -(log_alpha * (log_policy + target_entropy).detach()).mean() # Equation 18
+    alpha_loss = -(log_alpha * (log_policy + target_entropy).detach()).mean() 
     alpha_optimizer.zero_grad()
     alpha_loss.backward()
     alpha_optimizer.step()
