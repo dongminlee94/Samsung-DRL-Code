@@ -9,7 +9,7 @@
 
 ### 01. Deep Learning with PyTorch
 
-### 02. Deep Q-Network (DQN) & Double DQN (DDQN)
+### 02. Double DQN (DDQN)
 
 ### 03. Deep Deterministic Policy Gradient (DDPG)
 
