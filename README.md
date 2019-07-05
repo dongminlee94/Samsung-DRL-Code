@@ -13,11 +13,9 @@
 
 ### 03. Deep Deterministic Policy Gradient (DDPG)
 
-### 04. Trust Region Policy Optimization (TRPO)
+### 04. Trust Region Policy Optimization (TRPO) & Proximal Policy Optimization (PPO)
 
-### 05. Proximal Policy Optimization (PPO)
-
-### 06. Soft Actor-Critic (SAC)
+### 05. Soft Actor-Critic (SAC)
 
 ## Learning curve
 
