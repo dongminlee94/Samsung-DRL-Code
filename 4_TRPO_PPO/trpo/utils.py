@@ -132,14 +132,12 @@ def backtracking_line_search(old_actor, actor, actor_loss, actor_loss_grad,
     flag = False
 
     expected_improve = (actor_loss_grad * maximal_step).sum(0, keepdim=True)
-    expected_improve = expected_improve.data.numpy()
 
     for i in range(10):
         new_params = params + backtrac_coef * maximal_step
         update_model(actor, new_params)
         
         new_actor_loss = surrogate_loss(actor, values, targets, states, old_policy.detach(), actions)
-        new_actor_loss = new_actor_loss.data.numpy()
 
         loss_improve = new_actor_loss - actor_loss
         expected_improve *= backtrac_coef
