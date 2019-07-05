@@ -76,7 +76,7 @@ def train_model(actor, critic, critic_optimizer,
     maximal_step = step_size * search_dir
 
     # ----------------------------    
-    # step 6: update actor and perform backtracking line search
+    # step 6: perform backtracking line search and update actor in trust region
     params = flat_params(actor)
     
     old_actor = Actor(state_size, action_size, args)
