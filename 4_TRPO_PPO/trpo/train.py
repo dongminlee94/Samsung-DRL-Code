@@ -101,7 +101,7 @@ def main():
     critic = Critic(state_size, args)
     critic_optimizer = optim.Adam(critic.parameters(), lr=args.critic_lr)
 
-    # writer = SummaryWriter(args.logdir)
+    writer = SummaryWriter(args.logdir)
 
     recent_rewards = deque(maxlen=100)
     episodes = 0
@@ -144,7 +144,7 @@ def main():
         train_model(actor, critic, critic_optimizer, 
                     trajectories, state_size, action_size)
 
-        # writer.add_scalar('log/score', float(score), episodes)
+        writer.add_scalar('log/score', float(score), episodes)
         
         if iter % args.log_interval == 0:
             print('{} iter | {} episode | score_avg: {:.2f}'.format(iter, episodes, np.mean(recent_rewards)))    
