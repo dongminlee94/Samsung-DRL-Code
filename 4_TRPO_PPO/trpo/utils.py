@@ -75,7 +75,7 @@ def hessian_vector_product(actor, states, p, cg_damping=1e-1):
     kl_hessian = torch.autograd.grad(kl_grad_p, actor.parameters())
     kl_hessian = flat_hessian(kl_hessian)
 
-    return kl_hessian + p * cg_damping # cg_damping = 0.1
+    return kl_hessian + p * cg_damping
 
 def kl_divergence(new_actor, old_actor, states):
     mu, std = new_actor(torch.Tensor(states))
