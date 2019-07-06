@@ -21,11 +21,11 @@
 
 ### CartPole
 
-<img src="img/cartpole.png" width="700"/>
+<img src="img/cartpole.png" width="600"/>
 
 ### Pendulum
 
-<img src="img/pendulum_1.png" width="700"/>
+<img src="img/pendulum_1.png" width="600"/>
 
 ## Reference
 
