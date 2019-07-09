@@ -31,6 +31,5 @@
 
 - [Minimal and Clean Reinforcement Learning Examples in PyTorch](https://github.com/reinforcement-learning-kr/reinforcement-learning-pytorch)
 - [Pytorch implementation for Policy Gradient algorithms (REINFORCE, NPG, TRPO, PPO)](https://github.com/reinforcement-learning-kr/pg_travel)
-- [Pytorch implementation of DDPG](https://github.com/jcwleo/Reinforcement_Learning/blob/master/pendulum/pendulum_ddpg.py)
 - [Pytorch implementation of SAC1](https://github.com/vitchyr/rlkit/tree/master/rlkit/torch/sac)
 - [Pytorch implementation of SAC2](https://github.com/pranz24/pytorch-soft-actor-critic)
