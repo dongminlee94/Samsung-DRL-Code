@@ -15,7 +15,7 @@ print('torch' + torch.__version__)
 #################################
 
 from tensorboardX import SummaryWriter
-# writer = SummaryWriter('./logs')
+writer = SummaryWriter('./logs')
 
 ##################################################################
 
