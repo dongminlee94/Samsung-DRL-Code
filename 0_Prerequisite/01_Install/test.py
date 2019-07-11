@@ -23,24 +23,24 @@ writer = SummaryWriter('./logs')
 ##### 3. Check gym #####
 ########################
 
-# import gym
+import gym
 
-# env = gym.make('CartPole-v1')
+env = gym.make('CartPole-v1')
 
-# for episode in range(10000):
-#     done = False
-#     state = env.reset()
+for episode in range(10000):
+    done = False
+    state = env.reset()
 
-#     while not done:
-#         env.render()
+    while not done:
+        env.render()
 
-#         action = env.action_space.sample()
-#         next_state, reward, done, _ = env.step(action)
+        action = env.action_space.sample()
+        next_state, reward, done, _ = env.step(action)
 
-#         print('state: {} | action: {} | next_state: {} | reward: {} | done: {}'.format(
-#                 state, action, next_state, reward, done))
+        print('state: {} | action: {} | next_state: {} | reward: {} | done: {}'.format(
+                state, action, next_state, reward, done))
         
-#         state = next_state
+        state = next_state
 
-#         if done:
-#             break
+        if done:
+            break
