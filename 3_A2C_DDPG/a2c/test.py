@@ -5,20 +5,23 @@ import argparse
 import numpy as np
 
 import torch
-from utils import *
 from model import Actor, Critic
+from torch.distributions import Categorical
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--env_name', type=str, default="Pendulum-v0")
-parser.add_argument("--load_model", type=str, default='model.pth')
+parser.add_argument('--env_name', type=str, default="CartPole-v1")
+parser.add_argument("--load_model", type=str, default='model.pth.tar')
 parser.add_argument('--render', action="store_true", default=True)
 parser.add_argument('--hidden_size', type=int, default=64)
-parser.add_argument('--theta', type=float, default=0.15)
-parser.add_argument('--mu', type=float, default=0.0)
-parser.add_argument('--sigma', type=float, default=0.2)
 parser.add_argument('--iter', type=int, default=10000)
 parser.add_argument('--log_interval', type=int, default=10)
 args = parser.parse_args()
+
+def get_action(policies):
+    m = Categorical(policies)
+    action = m.sample()
+    action = action.data.numpy()[0]
+    return action
 
 if __name__=="__main__":
     env = gym.make(args.env_name)
@@ -26,10 +29,10 @@ if __name__=="__main__":
     torch.manual_seed(500)
 
     state_size = env.observation_space.shape[0]
-    action_size = env.action_space.shape[0]
+    action_size = env.action_space.n
     print('state size:', state_size)
     print('action size:', action_size)
-    
+
     actor = Actor(state_size, action_size, args)
     
     if args.load_model is not None:
@@ -37,7 +40,6 @@ if __name__=="__main__":
         pretrained_model = torch.load(pretrained_model_path)
         actor.load_state_dict(pretrained_model)
 
-    ou_noise = OUNoise(action_size, args.theta, args.mu, args.sigma)
     steps = 0
     
     for episode in range(args.iter):
@@ -52,15 +54,16 @@ if __name__=="__main__":
                 env.render()
 
             steps += 1
-
-            policy = actor(torch.Tensor(state))
-            action = get_action(policy, ou_noise)
+            policies = actor(torch.Tensor(state))
+            action = get_action(policies)
             
             next_state, reward, done, _ = env.step(action)
-            
-            next_state = np.reshape(next_state, [1, state_size])
+
+            next_state = np.reshape(next_state, [1, state_size])            
+            reward = reward if not done or score == 499 else -1
+
             state = next_state
             score += reward
 
         if episode % args.log_interval == 0:
-            print('{} episode | score: {:.2f}'.format(episode, score[0]))
+            print('{} episode | score: {:.2f}'.format(episode, score))

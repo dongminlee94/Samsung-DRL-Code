@@ -37,6 +37,7 @@ if __name__=="__main__":
         pretrained_model = torch.load(pretrained_model_path)
         actor.load_state_dict(pretrained_model)
 
+    ou_noise = OUNoise(action_size, args.theta, args.mu, args.sigma)
     steps = 0
     
     for episode in range(args.iter):
@@ -52,8 +53,8 @@ if __name__=="__main__":
 
             steps += 1
 
-            mu, std = actor(torch.Tensor(state))
-            action = get_action(mu, std)
+            policy = actor(torch.Tensor(state))
+            action = get_action(policy, ou_noise)
             
             next_state, reward, done, _ = env.step(action)
             

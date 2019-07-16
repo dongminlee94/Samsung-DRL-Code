@@ -9,7 +9,7 @@ from model import Actor
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--env_name', type=str, default="Pendulum-v0")
-parser.add_argument("--load_model", type=str, default='model.pth')
+parser.add_argument("--load_model", type=str, default='model.pth.tar')
 parser.add_argument('--render', action="store_true", default=True)
 parser.add_argument('--hidden_size', type=int, default=64)
 parser.add_argument('--iter', type=int, default=10000)
