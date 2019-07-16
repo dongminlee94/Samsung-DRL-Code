@@ -11,7 +11,7 @@
 
 ### 02. Double DQN (DDQN)
 
-### 03. Deep Deterministic Policy Gradient (DDPG)
+### 03. Advantage Actor-Critic (A2C) & Deep Deterministic Policy Gradient (DDPG)
 
 ### 04. Trust Region Policy Optimization (TRPO) & Proximal Policy Optimization (PPO)
 
