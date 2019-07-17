@@ -4,7 +4,7 @@
 
 ### 00. Prerequisite
 
-- Install from Anaconda to OpenAI Gym
+- Install (MacOS Ver. & Window Ver.)
 - Numpy
 
 ### 01. Deep Learning with PyTorch
