@@ -25,7 +25,7 @@
 
 ### Pendulum
 
-<img src="img/pendulum_1.png" width="600"/>
+<img src="img/pendulum.png" width="600"/>
 
 ## Reference
 
