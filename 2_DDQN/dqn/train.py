@@ -126,7 +126,7 @@ def main():
                 q_net.train(), target_q_net.train()
                 train_model(q_net, target_q_net, optimizer, mini_batch)
 
-                if steps % args.update_target:
+                if steps % args.update_target == 0:
                     update_target_model(q_net, target_q_net)
 
         score = score if score == 500.0 else score + 1
