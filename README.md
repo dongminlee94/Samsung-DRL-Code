@@ -28,35 +28,29 @@ The agents with the DRL algorithms are implemented and trained using classic con
 ### 03. Advantage Actor-Critic (A2C) & Deep Deterministic Policy Gradient (DDPG)
 
 1. A2C
-
-- [PDF]()
-- [Code]()
+   - [PDF]()
+   - [Code]()
 
 2. DDPG
-
-- [PDF]()
-- [Code]()
+   - [PDF]()
+   - [Code]()
 
 ### 04. Trust Region Policy Optimization (TRPO) & Proximal Policy Optimization (PPO)
 
 1. TRPO
-
-- [PDF]()
-- [Code]()
+   - [PDF]()
+   - [Code]()
 
 2. TRPO + GAE
-
-- [PDF]()
-- [Code]()
+   - [PDF]()
+   - [Code]()
 
 3. PPO
-
-- [Code]()
+   - [Code]()
 
 4. PPO + GAE
-
-- [PDF]()
-- [Code]()
+   - [PDF]()
+   - [Code]()
 
 ### 05. Soft Actor-Critic (SAC)
 
