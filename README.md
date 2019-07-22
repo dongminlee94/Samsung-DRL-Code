@@ -28,8 +28,8 @@ The agents with the DRL algorithms are implemented and trained using classic con
 ### 03. Advantage Actor-Critic (A2C) & Deep Deterministic Policy Gradient (DDPG)
 
 1. A2C
-- [PDF](https://github.com/dongminlee94/Samsung-DRL-Code/blob/master/3_A2C_DDPG/A2C.pdf)
-- [Code](https://github.com/dongminlee94/Samsung-DRL-Code/tree/master/3_A2C_DDPG/a2c)
+   - [PDF](https://github.com/dongminlee94/Samsung-DRL-Code/blob/master/3_A2C_DDPG/A2C.pdf)
+   - [Code](https://github.com/dongminlee94/Samsung-DRL-Code/tree/master/3_A2C_DDPG/a2c)
 
 2. DDPG
    - [PDF](https://github.com/dongminlee94/Samsung-DRL-Code/blob/master/3_A2C_DDPG/DDPG.pdf)
