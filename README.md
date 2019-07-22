@@ -1,8 +1,8 @@
-# Deep Reinforcement Learning Code
+# Deep Reinforcement Learning, Summer 2019 (Samsung)
 
-This repository contains code for **Deep Reinforcement Learning (DRL) algorithms** with PyTorch (v0.4.1). It also provides lecture materials that explain code in detail.
+This repository contains codes for **Deep Reinforcement Learning (DRL) algorithms** with PyTorch (v0.4.1). It also provides lecture slides that explain codes in detail.
 
-The agents with the DRL algorithms are implemented and trained using classic control environments.
+The agents with the DRL algorithms have been implemented and trained using classic control environments in OpenAI Gym.
 
 - [CartPole](https://gym.openai.com/envs/CartPole-v1/)
 - [Pendulum](https://gym.openai.com/envs/Pendulum-v0/)
@@ -72,6 +72,7 @@ The agents with the DRL algorithms are implemented and trained using classic con
 - [Deep Q-Network (DQN)](https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf)
 - [Double DQN (DDQN)](https://arxiv.org/pdf/1509.06461.pdf)
 - [Advantage Actor-Critic (A2C)](http://incompleteideas.net/book/RLbook2018.pdf)
+- [Asynchronous Advantage Actor-Critic (A3C)](https://arxiv.org/pdf/1602.01783.pdf)
 - [Deep Deterministic Policy Gradient (DDPG)](https://arxiv.org/pdf/1509.02971.pdf)
 - [Trust Region Policy Optimization (TRPO)](https://arxiv.org/pdf/1502.05477.pdf)
 - [Generalized Advantage Estimator (GAE)](https://arxiv.org/pdf/1506.02438.pdf)
