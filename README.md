@@ -11,9 +11,9 @@ The agents with the DRL algorithms are implemented and trained using classic con
 
 ### 00. Prerequisite
 
-#### [Install from Anaconda to OpenAI Gym (Window Ver. & MacOS Ver.)](https://github.com/dongminlee94/Samsung-DRL-Code/tree/master/0_Prerequisite/01_Install)
+#### [1. Install from Anaconda to OpenAI Gym (Window Ver. & MacOS Ver.)](https://github.com/dongminlee94/Samsung-DRL-Code/tree/master/0_Prerequisite/01_Install)
 
-#### [Numpy](https://github.com/dongminlee94/Samsung-DRL-Code/tree/master/0_Prerequisite/02_Numpy)
+#### [2. Numpy](https://github.com/dongminlee94/Samsung-DRL-Code/tree/master/0_Prerequisite/02_Numpy)
 
 ### 01. Deep Learning with PyTorch
 
@@ -28,30 +28,36 @@ The agents with the DRL algorithms are implemented and trained using classic con
 
 ### 03. Advantage Actor-Critic (A2C) & Deep Deterministic Policy Gradient (DDPG)
 
-1. A2C
-   - [PDF]()
-   - [Code]()
+#### 1. A2C
 
-2. DDPG
-   - [PDF]()
-   - [Code]()
+- [PDF]()
+- [Code]()
+
+#### 2. DDPG
+
+- [PDF]()
+- [Code]()
 
 ### 04. Trust Region Policy Optimization (TRPO) & Proximal Policy Optimization (PPO)
 
-1. TRPO
-   - [PDF]()
-   - [Code]()
+#### 1. TRPO
 
-2. TRPO + GAE
-   - [PDF]()
-   - [Code]()
+- [PDF]()
+- [Code]()
 
-3. PPO
-   - [Code]()
+#### 2. TRPO + GAE
 
-4. PPO + GAE
-   - [PDF]()
-   - [Code]()
+- [PDF]()
+- [Code]()
+
+#### 3. PPO
+
+- [Code]()
+
+#### 4. PPO + GAE
+
+- [PDF]()
+- [Code]()
 
 ### 05. Soft Actor-Critic (SAC)
 
