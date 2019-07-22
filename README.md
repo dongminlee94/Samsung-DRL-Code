@@ -1,6 +1,6 @@
 # Code of Deep Reinforcement Learning with PyTorch
 
-This repository contains code for Deep Reinforcement Learning (DRL) algorithms with PyTorch. It also provides lecture materials that explain code in detail.
+This repository contains code for **Deep Reinforcement Learning (DRL) algorithms** with PyTorch. It also provides lecture materials that explain code in detail.
 
 The agents with the DRL algorithms are implemented and trained using classic control environments.
 
@@ -11,9 +11,9 @@ The agents with the DRL algorithms are implemented and trained using classic con
 
 ### 00. Prerequisite
 
-1. [Install from Anaconda to OpenAI Gym (Window Ver. & MacOS Ver.)](https://github.com/dongminlee94/Samsung-DRL-Code/tree/master/0_Prerequisite/01_Install)
+#### [Install from Anaconda to OpenAI Gym (Window Ver. & MacOS Ver.)](https://github.com/dongminlee94/Samsung-DRL-Code/tree/master/0_Prerequisite/01_Install)
 
-2. [Numpy](https://github.com/dongminlee94/Samsung-DRL-Code/tree/master/0_Prerequisite/02_Numpy)
+#### [Numpy](https://github.com/dongminlee94/Samsung-DRL-Code/tree/master/0_Prerequisite/02_Numpy)
 
 ### 01. Deep Learning with PyTorch
 
