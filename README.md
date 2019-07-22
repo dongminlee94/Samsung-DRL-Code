@@ -67,6 +67,17 @@ The agents with the DRL algorithms are implemented and trained using classic con
 
 <img src="img/pendulum.png" width="500"/>
 
+## Paper
+
+- [Deep Q-Network (DQN)](https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf)
+- [Double DQN (DDQN)](https://arxiv.org/pdf/1509.06461.pdf)
+- [Advantage Actor-Critic (A2C)](http://incompleteideas.net/book/RLbook2018.pdf)
+- [Deep Deterministic Policy Gradient (DDPG)](https://arxiv.org/pdf/1509.02971.pdf)
+- [Trust Region Policy Optimization (TRPO)](https://arxiv.org/pdf/1502.05477.pdf)
+- [Generalized Advantage Estimator (GAE)](https://arxiv.org/pdf/1506.02438.pdf)
+- [Proximal Policy Optimization (PPO)](https://arxiv.org/pdf/1707.06347.pdf)
+- [Soft Actor-Critic (SAC)](https://arxiv.org/pdf/1812.05905.pdf)
+
 ## Reference
 
 - [Minimal and Clean Reinforcement Learning Examples in PyTorch](https://github.com/reinforcement-learning-kr/reinforcement-learning-pytorch)
