@@ -38,8 +38,8 @@ The agents with the DRL algorithms are implemented and trained using classic con
 ### 04. Trust Region Policy Optimization (TRPO) & Proximal Policy Optimization (PPO)
 
 1. TRPO
-   - [PDF]()
-   - [Code]()
+   1. [PDF]()
+   2. [Code]()
 
 2. TRPO + GAE
    - [PDF]()
