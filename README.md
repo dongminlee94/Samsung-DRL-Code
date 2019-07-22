@@ -1,6 +1,6 @@
-# Code of Deep Reinforcement Learning with PyTorch
+# Deep Reinforcement Learning Code
 
-This repository contains code for **Deep Reinforcement Learning (DRL) algorithms** with PyTorch. It also provides lecture materials that explain code in detail.
+This repository contains code for **Deep Reinforcement Learning (DRL) algorithms** with PyTorch (v0.4.1). It also provides lecture materials that explain code in detail.
 
 The agents with the DRL algorithms are implemented and trained using classic control environments.
 
