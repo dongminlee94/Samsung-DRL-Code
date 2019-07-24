@@ -18,7 +18,8 @@ class OUNoise:
 
 def get_action(policy, ou_noise): 
     action = policy.detach().numpy() + ou_noise.sample() 
-
+    action = np.clip(action, -2.0, 2.0)
+    
     return action
 
 def hard_target_update(actor, critic, target_actor, target_critic):
