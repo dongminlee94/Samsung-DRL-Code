@@ -18,14 +18,16 @@ parser.add_argument('--load_model', type=str, default=None)
 parser.add_argument('--save_path', default='./save_model/', help='')
 parser.add_argument('--render', action="store_true", default=False)
 parser.add_argument('--gamma', type=float, default=0.99)
-parser.add_argument('--hidden_size', type=int, default=64)
-parser.add_argument('--batch_size', type=int, default=64)
-parser.add_argument('--actor_lr', type=float, default=1e-3)
+parser.add_argument('--hidden_size', type=int, default=128)
+parser.add_argument('--batch_size', type=int, default=128)
+parser.add_argument('--actor_lr', type=float, default=1e-4)
 parser.add_argument('--critic_lr', type=float, default=1e-3)
 parser.add_argument('--theta', type=float, default=0.15)
 parser.add_argument('--mu', type=float, default=0.0)
-parser.add_argument('--sigma', type=float, default=0.2)
+parser.add_argument('--sigma', type=float, default=0.3)
 parser.add_argument('--tau', type=float, default=0.001)
+parser.add_argument('--gradient_clip_actor', type=float, default=0.5)
+parser.add_argument('--gradient_clip_critic', type=float, default=1.0)
 parser.add_argument('--max_iter_num', type=int, default=1000)
 parser.add_argument('--log_interval', type=int, default=10)
 parser.add_argument('--goal_score', type=int, default=-300)
@@ -60,6 +62,7 @@ def train_model(actor, critic, target_actor, target_critic,
     critic_loss = criterion(q_value, target.detach())
     critic_optimizer.zero_grad()
     critic_loss.backward()
+    torch.nn.utils.clip_grad_norm_(critic.parameters(), args.gradient_clip_critic)
     critic_optimizer.step()
 
     # update actor 
@@ -68,6 +71,7 @@ def train_model(actor, critic, target_actor, target_critic,
     actor_loss = -critic(torch.Tensor(states), policy).mean()
     actor_optimizer.zero_grad()
     actor_loss.backward()
+    torch.nn.utils.clip_grad_norm_(actor.parameters(), args.gradient_clip_actor)
     actor_optimizer.step()
 
     
@@ -94,7 +98,7 @@ def main():
 
     writer = SummaryWriter(args.logdir)
     
-    replay_buffer = deque(maxlen=10000)
+    replay_buffer = deque(maxlen=100000)
     recent_rewards = deque(maxlen=100)
     steps = 0
 
@@ -112,7 +116,7 @@ def main():
             steps += 1
 
             policy = actor(torch.Tensor(state))
-            action = get_action(policy, ou_noise)
+            action = get_action(policy, ou_noise, env)
             
             next_state, reward, done, _ = env.step(action) 
 

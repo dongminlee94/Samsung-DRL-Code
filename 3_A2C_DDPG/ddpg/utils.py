@@ -10,16 +10,15 @@ class OUNoise:
         self.X = np.zeros(self.action_size) 
 
     def sample(self):
-        dx = self.theta * (self.mu - self.X)
-        dx = dx + self.sigma * np.random.randn(len(self.X))
+        dx = self.theta * (self.mu - self.X) + self.sigma * np.random.randn(len(self.X))
         self.X = self.X + dx
         
         return self.X
 
-def get_action(policy, ou_noise): 
+def get_action(policy, ou_noise, env): 
     action = policy.detach().numpy() + ou_noise.sample() 
-    action = np.clip(action, -2.0, 2.0)
-    
+    action = np.clip(action, env.action_space.low, env.action_space.high)
+
     return action
 
 def hard_target_update(actor, critic, target_actor, target_critic):

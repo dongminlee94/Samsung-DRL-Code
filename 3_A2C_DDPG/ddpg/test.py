@@ -12,10 +12,10 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--env_name', type=str, default="Pendulum-v0")
 parser.add_argument("--load_model", type=str, default='model.pth.tar')
 parser.add_argument('--render', action="store_true", default=True)
-parser.add_argument('--hidden_size', type=int, default=64)
-parser.add_argument('--theta', type=float, default=0.15)
+parser.add_argument('--hidden_size', type=int, default=128)
+parser.add_argument('--theta', type=float, default=0.0)
 parser.add_argument('--mu', type=float, default=0.0)
-parser.add_argument('--sigma', type=float, default=0.2)
+parser.add_argument('--sigma', type=float, default=0.0)
 parser.add_argument('--iter', type=int, default=10000)
 parser.add_argument('--log_interval', type=int, default=10)
 args = parser.parse_args()
@@ -54,7 +54,7 @@ if __name__=="__main__":
             steps += 1
 
             policy = actor(torch.Tensor(state))
-            action = get_action(policy, ou_noise)
+            action = get_action(policy, ou_noise, env)
             
             next_state, reward, done, _ = env.step(action)
             

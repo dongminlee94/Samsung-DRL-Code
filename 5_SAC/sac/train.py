@@ -18,9 +18,9 @@ parser.add_argument('--load_model', type=str, default=None)
 parser.add_argument('--save_path', default='./save_model/', help='')
 parser.add_argument('--render', action="store_true", default=False)
 parser.add_argument('--gamma', type=float, default=0.99)
-parser.add_argument('--hidden_size', type=int, default=64)
-parser.add_argument('--batch_size', type=int, default=64)
-parser.add_argument('--actor_lr', type=float, default=1e-3)
+parser.add_argument('--hidden_size', type=int, default=128)
+parser.add_argument('--batch_size', type=int, default=128)
+parser.add_argument('--actor_lr', type=float, default=1e-4)
 parser.add_argument('--critic_lr', type=float, default=1e-3)
 parser.add_argument('--alpha_lr', type=float, default=1e-4)
 parser.add_argument('--tau', type=float, default=0.005)
@@ -120,7 +120,7 @@ def main():
     
     writer = SummaryWriter(args.logdir)
 
-    replay_buffer = deque(maxlen=10000)
+    replay_buffer = deque(maxlen=100000)
     recent_rewards = deque(maxlen=100)
     steps = 0
 
